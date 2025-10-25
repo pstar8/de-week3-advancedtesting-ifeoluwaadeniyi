@@ -7,13 +7,6 @@ class Transformer:
     def __init__(self):
         pass
     
-    # def transform(self, data: List[Dict]) -> List[Dict]:
-    #     transformed_data = []
-    #     for order in data:
-    #         transformed_order = self.transform_order(order)
-    #         transformed_data.append(transformed_order)
-    #     return transformed_data
-    
     
     def parse_price(self, value) -> float:
         if isinstance(value, (int, float)):
@@ -70,4 +63,11 @@ class Transformer:
             transformed["price"]
         )
         return transformed
+    
+    def transform(self, data: List[Dict]) -> List[Dict]:
+        transformed_data = []
+        for order in data:
+            transformed_order = self.transform_order(order)
+            transformed_data.append(transformed_order)
+        return transformed_data
     

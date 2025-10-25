@@ -15,27 +15,29 @@ class Validator:
 
         numeric_fields = ["quantity", "price", "total"]
         for field in numeric_fields:
-                value = order.get(field)
-                if value is None:
-                    return False
-                if value <= 0:
-                    return False
-                # if (ValueError, TypeError):
-                #     return False
-                return True
+            value = order.get(field)
+            if value is None:
+                return False
+            try:
+                numeric_value = float(value)
+            except (TypeError, ValueError):
+                return False
+            if numeric_value <= 0:
+                return False
+        return True
         
 
-    # def validate(self, data: List[Dict]) -> List[Dict]:
-    #     valid_orders = []
-    #     self.invalid_ordes = []
+    def validate(self, data: List[Dict]) -> List[Dict]:
+        valid_orders = []
+        self.invalid_orders = []
         
-    #     for order in data:
-    #         if self.is_valid(order):
-    #             valid_orders.append(order)  # Include good orders
-    #         else:
-    #             self.invalid.append(order)  # Skip bad orders
+        for order in data:
+            if self.is_valid_order(order):
+                valid_orders.append(order)  # Include good orders
+            else:
+                self.invalid_orders.append(order)  # Skip bad orders
         
-    #     return valid_orders
+        return valid_orders
 
     def is_valid_order(self, order: Dict) -> bool:
         # All conditions must be True

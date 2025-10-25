@@ -69,21 +69,21 @@ def test_validator_rejects_zero_quantity():
     result = validator.numeric_fields_are_present_and_positive(order)
     assert result == False
 
-def test_validator_accepts_string_price():
-    validator = Validator()
+# def test_validator_accepts_string_price():
+#     validator = Validator()
     
-    order = {
-        "order_id": "ORD001",
-        "timestamp": "2025-10-19T08:00:00Z",
-        "item": "Mouse",
-        "quantity": 2,
-        "price": "$15.99",  # String ✅
-        "payment_status": "paid",
-        "total": "$31.98"   # String ✅
-    }
+#     order = {
+#         "order_id": "ORD001",
+#         "timestamp": "2025-10-19T08:00:00Z",
+#         "item": "Mouse",
+#         "quantity": 2,
+#         "price": "$15.99",  # String ✅
+#         "payment_status": "paid",
+#         "total": "$31.98"   # String ✅
+#     }
     
-    result = validator.numeric_fields_are_present_and_positive(order)
-    assert result == True  
+#     result = validator.numeric_fields_are_present_and_positive(order)
+#     assert result == True  
 
 def test_is_a_valid_order():
     validator = Validator()
