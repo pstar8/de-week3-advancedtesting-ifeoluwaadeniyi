@@ -9,8 +9,8 @@ from order_pipeline.exporter import Exporter
 class Pipeline:    
     def __init__(self, input_file: str, output_file: str):
        
-        self.input_file = ("../shoplink.json")
-        self.output_file = ("../shoplink_cleaned.json")
+        self.input_file = input_file
+        self.output_file = output_file
     
     def run(self) -> Dict:
         """Read the data"""

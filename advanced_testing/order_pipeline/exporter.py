@@ -5,7 +5,7 @@ from typing import List, Dict
 class Exporter:
     
     def __init__(self, filepath: str):
-        self.filepath = ("../shoplink.json" if filepath == "" else filepath)
+        self.filepath = filepath
     
     def export(self, data: List[Dict]) -> None:
         try:

@@ -21,7 +21,7 @@ def test_pipeline_runs_successfully(temp_dir):
     """Test that pipeline runs without errors."""
     output_file = os.path.join(temp_dir, 'output.json')
     
-    pipeline = Pipeline('shoplink.json', output_file)
+    pipeline = Pipeline('../shoplink.json', output_file)
     results = pipeline.run()
     
     # Check results structure
@@ -37,7 +37,7 @@ def test_pipeline_produces_clean_data(temp_dir):
     """Test that pipeline produces correctly cleaned data."""
     output_file = os.path.join(temp_dir, 'output.json')
     
-    pipeline = Pipeline('shoplink.json', output_file)
+    pipeline = Pipeline('../shoplink.json', output_file)
     results = pipeline.run()
     
     # Read output file
@@ -68,7 +68,7 @@ def test_pipeline_analytics_correct(temp_dir):
     """Test that pipeline produces correct analytics."""
     output_file = os.path.join(temp_dir, 'output.json')
     
-    pipeline = Pipeline('shoplink.json', output_file)
+    pipeline = Pipeline('../shoplink.json', output_file)
     results = pipeline.run()
     
     # Read output to verify analytics
@@ -89,14 +89,10 @@ def test_pipeline_analytics_correct(temp_dir):
 
 
 def test_pipeline_integration():
-    """
-    Full integration test with real shoplink.json data.
-    This is the most important test!
-    """
     output_file = 'shoplink_cleaned.json'
     
     # Run pipeline
-    pipeline = Pipeline('shoplink.json', output_file)
+    pipeline = Pipeline('../shoplink.json', output_file)
     results = pipeline.run()
     
     print(f"\n📊 Pipeline Results:")
