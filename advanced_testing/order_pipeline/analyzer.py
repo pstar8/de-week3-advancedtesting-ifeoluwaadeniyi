@@ -5,6 +5,7 @@ class Analyzer:
     
     def __init__(self):
         pass       
+
     
     def calculate_total_revenue(self, data: List[Dict]) -> float:
         total = 0.0
@@ -38,3 +39,14 @@ class Analyzer:
         
         return counts
 
+
+    def analyze(self, data: List[Dict]) -> Dict:
+        total_revenue = self.calculate_total_revenue(data)
+        average_revenue = self.calculate_average_revenue(data)
+        payment_status_counts = self.count_payment_statuses(data)
+        
+        return {
+            'total_revenue': total_revenue,
+            'average_revenue': average_revenue,
+            'payment_status_counts': payment_status_counts
+        }

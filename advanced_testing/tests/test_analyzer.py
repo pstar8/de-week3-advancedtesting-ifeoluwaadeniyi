@@ -48,3 +48,27 @@ def test_count_payment_statuses_basic():
     assert result["paid"] == 3
     assert result["pending"] == 1
     assert result["refunded"] == 1
+
+
+def test_analyze_complete_analysis():
+    """Test complete analysis with multiple orders."""
+    analyzer = Analyzer()
+    
+    data = [
+        {"order_id": "ORD001", "total": 31.98, "payment_status": "paid"},
+        {"order_id": "ORD002", "total": 12.50, "payment_status": "paid"},
+        {"order_id": "ORD003", "total": 50.00, "payment_status": "pending"}
+    ]
+    
+    result = analyzer.analyze(data)
+    
+    # Check structure
+    assert "total_revenue" in result
+    assert "average_revenue" in result
+    assert "payment_status_counts" in result
+    
+    # Check values
+    assert result["total_revenue"] == 94.48
+    assert round(result["average_revenue"], 2) == 31.49
+    assert result["payment_status_counts"]["paid"] == 2
+    assert result["payment_status_counts"]["pending"] == 1
