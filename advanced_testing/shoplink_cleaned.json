@@ -1,5 +1,14 @@
 [
     {
+        "order_id": "ORD001",
+        "timestamp": "2025-10-19T08:00:00Z",
+        "item": "Wireless Mouse",
+        "quantity": 2,
+        "price": 15.99,
+        "payment_status": "paid",
+        "total": 31.98
+    },
+    {
         "order_id": "ORD002",
         "timestamp": "2025-10-19 08:05",
         "item": "Laptop Sleeve",
@@ -7,6 +16,33 @@
         "price": 12.5,
         "payment_status": "paid",
         "total": 12.5
+    },
+    {
+        "order_id": "ORD004",
+        "timestamp": "2025-10-19T08:15:00Z",
+        "item": "Wireless Mouse",
+        "quantity": 2,
+        "price": 16.0,
+        "payment_status": "paid",
+        "total": 32.0
+    },
+    {
+        "order_id": "ORD006",
+        "timestamp": "2025/10/19T08:25Z",
+        "item": "Phone Case",
+        "quantity": 3,
+        "price": 2000.0,
+        "payment_status": "paid",
+        "total": 6000.0
+    },
+    {
+        "order_id": "ORD008",
+        "timestamp": "2025-10-19T08:35:00Z",
+        "item": "Charger",
+        "quantity": 2,
+        "price": 4500.0,
+        "payment_status": "pending",
+        "total": 9000.0
     },
     {
         "order_id": "ORD010",

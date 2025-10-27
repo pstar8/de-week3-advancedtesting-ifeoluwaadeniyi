@@ -50,7 +50,7 @@ def test_validator_rejects_negative_quantity():
         "total": 15
     }
     
-    result = validator.numeric_fields_are_present_and_positive(order)
+    result = validator.numeric_fields_are_positive(order)
     assert result == False
 
 def test_validator_rejects_zero_quantity():
@@ -66,24 +66,24 @@ def test_validator_rejects_zero_quantity():
         "total": 0      #Zero!
     }
     
-    result = validator.numeric_fields_are_present_and_positive(order)
+    result = validator.numeric_fields_are_positive(order)
     assert result == False
 
-# def test_validator_accepts_string_price():
-#     validator = Validator()
+def test_validator_accepts_string_price():
+    validator = Validator()
     
-#     order = {
-#         "order_id": "ORD001",
-#         "timestamp": "2025-10-19T08:00:00Z",
-#         "item": "Mouse",
-#         "quantity": 2,
-#         "price": "$15.99",  # String ✅
-#         "payment_status": "paid",
-#         "total": "$31.98"   # String ✅
-#     }
+    order = {
+        "order_id": "ORD001",
+        "timestamp": "2025-10-19T08:00:00Z",
+        "item": "Mouse",
+        "quantity": 2,
+        "price": "$15.99",  # String ✅
+        "payment_status": "paid",
+        "total": "$31.98"   # String ✅
+    }
     
-#     result = validator.numeric_fields_are_present_and_positive(order)
-#     assert result == True  
+    result = validator.numeric_fields_are_parseable(order)
+    assert result == True  
 
 def test_is_a_valid_order():
     validator = Validator()
@@ -99,3 +99,34 @@ def test_is_a_valid_order():
     
     result = validator.is_valid_order(order)
     assert result is True
+
+    def test_validator_rejects_non_parseable_quantities():
+        """Test that Validator rejects quantities like 'N/A'."""
+        validator = Validator()
+        
+        order_with_na = {
+            "order_id": "ORD007",
+            "timestamp": "2025-10-19T08:30:00Z",
+            "item": "Power Bank",
+            "quantity": "N/A",  # ❌ Should be rejected!
+            "price": "$25",
+            "payment_status": "Paid",
+            "total": "$50"
+        }
+        
+        result = validator.is_valid_order(order_with_na)
+        assert result == False
+        
+        # Test with valid parseable quantity
+        order_with_parseable = {
+            "order_id": "ORD004",
+            "timestamp": "2025-10-19T08:15:00Z",
+            "item": "Mouse",
+            "quantity": "2pcs",  # ✅ Should be accepted (has digit '2')
+            "price": "$16",
+            "payment_status": "paid",
+            "total": "$32.00"
+        }
+    
+        result = validator.is_valid_order(order_with_parseable)
+        assert result == True

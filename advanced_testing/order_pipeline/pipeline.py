@@ -1,3 +1,10 @@
+import os
+import sys
+
+if __name__ == '__main__':
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from typing import List
 from typing import Dict
 from order_pipeline.reader import Reader
 from order_pipeline.validator import Validator
